@@ -93,7 +93,11 @@ PgtblVa2MPNLocked(struct mm_struct *mm, // IN: Mm structure of a process
          } else {
             pte_t *pte;
 
+#if COMPAT_LINUX_VERSION_CHECK_LT(5, 14, 0)
             pte = pte_offset_map(pmd, addr);
+#else
+            pte = pte_offset_kernel(pmd, addr);
+#endif
             if (pte_present(*pte) == 0) {
                pte_unmap(pte);
                return INVALID_MPN;

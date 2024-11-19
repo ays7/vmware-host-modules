@@ -101,7 +101,7 @@ compat_csum_and_copy_to_user(const void *src, void __user *dst, int len,
 {
 	unsigned int csum;
 
-#if COMPAT_LINUX_VERSION_CHECK_LT(5, 19, 0)
+#if COMPAT_LINUX_VERSION_CHECK_LT(5, 14, 0)
 	csum = csum_and_copy_to_user(src, dst, len);
 #else
 	csum = csum_partial(src, len, ~0U);
