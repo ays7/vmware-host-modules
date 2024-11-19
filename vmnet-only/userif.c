@@ -107,7 +107,7 @@ compat_csum_and_copy_to_user(const void *src, void __user *dst, int len,
 	csum = csum_partial(src, len, ~0U);
 	if (copy_to_user(dst, src, len))
 		csum = 0;
-#endif /* 5.19 */
+#endif /* 5.14 */
 
 	*err = (csum == 0 ? -EFAULT : 0);
 	return csum;
